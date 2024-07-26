@@ -1,10 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Films from '../components/Films.astro';
+
+const films = await fetch('https://swapi.dev/api/films').then(response => response.json());
 ---
+
+<script>
+	let count = 0;
+
+	const button = document.querySelector('.btn');
+	const counter = button?.querySelector('span');
+	const increaseNumber = () => {
+		count += 1;
+		if (counter) {
+			counter.textContent = count.toString();
+			console.log(counter);
+		}
+	}
+
+	button?.addEventListener('click', increaseNumber)
+
+
+const films = await fetch('https://swapi.dev/api/films/1/').then(response => response.data);
+</script>
 
 <Layout title="Welcome to Astro.">
 	<main>
+		<Films films={films.results} />
+		<button class="btn">
+			Click 
+			<span>
+				0
+			</span>
+		</button>
 		<svg
 			class="astro-a"
 			width="495"

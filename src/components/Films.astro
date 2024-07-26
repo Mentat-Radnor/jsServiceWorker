@@ -1,0 +1,26 @@
+---
+interface Film {
+  characters: Array<string>;
+  created: string;
+  director: string;
+  title: string;
+}
+
+interface Props {
+	films: Array<Film>;
+}
+
+const { films } = Astro.props;
+---
+
+<section>
+  <h2>Star Wars Films</h2>
+
+  {
+    films.map(
+      (data) => <div>
+        <h3>{ data }</h3>
+      </div>
+    )
+    }
+</section>
